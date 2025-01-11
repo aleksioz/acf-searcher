@@ -1,0 +1,194 @@
+
+#acf-search-form {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #1b1b1b;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#acf-search-form input[type="text"],
+#acf-search-form input[type="number"],
+#acf-search-form select {
+    flex: 1;
+    height: 100%;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    background: #1b1b1b;
+    color: #fff;
+}
+
+#acf-search-form select:hover,
+#acf-search-form input:hover {
+    border-color: #d09a40;
+}
+
+#acf-search-form input[type="text"] {
+    order: 2;
+    flex-basis: 50%;
+}
+
+#acf-search-form select[name="rasa"] {
+    order: 1;
+    flex-basis: 30%;
+}
+
+#acf-search-form input[type="number"],
+#acf-search-form select:not([name="rasa"]) {
+    order: 0;
+    flex-basis: 15%;
+}
+
+#acf-search-form input[type="text"]:focus,
+#acf-search-form input[type="number"]:focus,
+#acf-search-form select:focus {
+    border-color: #d09a40;
+    outline: none;
+}
+
+#acf-search-form button[type="submit"] {
+    order: 5;
+    padding: 10px 20px;
+    background-color: #d09a40;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    flex: 0 0 auto;
+}
+
+#acf-search-form button[type="submit"]:hover {
+    background-color: #b07a30;
+}
+
+#acf-search-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23d09a40"><path d="M4 6l4 4 4-4z"/></svg>') no-repeat right 10px center;
+    background-size: 12px;
+    background-color: #1b1b1b; /* Theme color for the select dropdown */
+    color: #fff; /* Text color */
+}
+
+#acf-search-form select option {
+    background-color: #1b1b1b; /* Theme color for the options */
+    color: #fff; /* Text color */
+}
+
+#acf-search-form select option:hover {
+    border-color: #d09a40;
+    color: #fff; /* Text color */
+}
+
+#acf-search-form select option:disabled {
+    color: #fff; /* Text color for disabled options */
+}
+
+#acf-search-form select::-ms-expand {
+    display: none;
+}
+
+/* Select2 specific styles */
+.select2-container--default .select2-selection--single {
+    background-color: #1b1b1b;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #fff;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.select2-container--default .select2-selection--single:hover {
+    border-color: #d09a40;
+}
+
+.select2-container--default input.select2-search__field {
+    background-color: #1b1b1b;
+    color: #fff;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #fff;
+    line-height: 20px; /* Adjust this value to match the height of the select field */
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+    right: 10px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: #d09a40 transparent transparent transparent;
+}
+
+.select2-container--default .select2-dropdown {
+    background-color: #1b1b1b;
+    border: 1px solid #ccc;
+}
+
+.select2-container--default .select2-results__option {
+    background-color: #1b1b1b;
+    color: #fff;
+}
+
+.select2-container--default .select2-results__option--highlighted,
+.select2-container--default .select2-results__option--highlighted[aria-selected]  {
+    background-color: #d09a40;
+    color: #fff;
+}
+
+.acf-searcher-results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.acf-searcher-item {
+    background: #0e0d06;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.acf-searcher-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.acf-searcher-item a {
+    color: #d09a40;
+    text-decoration: none;
+}
+
+.acf-searcher-item .post-thumbnail {
+    margin-bottom: 10px;
+}
+
+.acf-searcher-item .post-thumbnail img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.acf-searcher-item .post-title {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.acf-searcher-item .post-excerpt {
+    font-size: 1em;
+    color: #ccc;
+}
