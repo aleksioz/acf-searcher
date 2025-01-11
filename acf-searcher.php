@@ -2,7 +2,7 @@
 /**
  * Plugin Name: acf-searcher
  * Description: A search plugin for ACF fields
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Aleksa
  */
 

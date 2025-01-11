@@ -88,40 +88,69 @@ class Init {
             's' => sanitize_text_field($_POST['search']),
             // custom field query args here
             'meta_query' => [
-                'relation' => 'AND',
-                $_POST['rasa'] ? [
-                    'key' => 'rasa',
-                    'value' => sanitize_text_field($_POST['rasa']),
-                    'compare' => '='
-                ] : [],
-                $_POST['pol'] ? [
-                    'key' => 'pol',
-                    'value' => sanitize_text_field($_POST['pol']),
-                    'compare' => '='
-                ] : [],
-                $_POST['velicina'] ? [
-                    'key' => 'velicina',
-                    'value' => sanitize_text_field($_POST['velicina']),
-                    'compare' => '='
-                ] : [],
-                $_POST['boja'] ? [
-                    'key' => 'boja',
-                    'value' => sanitize_text_field($_POST['boja']),
-                    'compare' => '='
-                ] : [],
-                $_POST['cip'] ? [
-                    'key' => 'cip',
-                    'value' => sanitize_text_field($_POST['cip']),
-                    'compare' => '='
-                ] : [],
-                $_POST['datum'] ? [
-                    'key' => 'datum',
-                    'value' => date('Ymd', strtotime('-' . sanitize_text_field($_POST['datum']) . ' months')),
-                    'compare' => '>'
-                ] : []
+                'relation' => 'OR',
+                [
+                    'relation' => 'AND',
+                    $_POST['rasa'] ? [
+                        'key' => 'rasa',
+                        'value' => sanitize_text_field($_POST['rasa']),
+                        'compare' => '='
+                    ] : [],
+                    $_POST['pol'] ? [
+                        'key' => 'pol',
+                        'value' => sanitize_text_field($_POST['pol']),
+                        'compare' => '='
+                    ] : [],
+                    $_POST['velicina'] ? [
+                        'key' => 'velicina',
+                        'value' => sanitize_text_field($_POST['velicina']),
+                        'compare' => '='
+                    ] : [],
+                    $_POST['boja'] ? [
+                        'key' => 'boja',
+                        'value' => sanitize_text_field($_POST['boja']),
+                        'compare' => '='
+                    ] : [],
+                    $_POST['cip'] ? [
+                        'key' => 'cip',
+                        'value' => sanitize_text_field($_POST['cip']),
+                        'compare' => '='
+                    ] : [],
+                    $_POST['datum'] ? [
+                        'key' => 'datum',
+                        'value' => date('Ymd', strtotime('-' . sanitize_text_field($_POST['datum']) . ' months')),
+                        'compare' => '>'
+                    ] : []
+                ],
+                [
+                    'relation' => 'OR',
+                    [
+                        'key' => 'rasa',
+                        'compare' => 'NOT EXISTS'
+                    ],
+                    [
+                        'key' => 'pol',
+                        'compare' => 'NOT EXISTS'
+                    ],
+                    [
+                        'key' => 'velicina',
+                        'compare' => 'NOT EXISTS'
+                    ],
+                    [
+                        'key' => 'boja',
+                        'compare' => 'NOT EXISTS'
+                    ],
+                    [
+                        'key' => 'cip',
+                        'compare' => 'NOT EXISTS'
+                    ],
+                    [
+                        'key' => 'datum',
+                        'compare' => 'NOT EXISTS'
+                    ]
+                ]
             ]
         ];
-
         $query = new WP_Query($args);
         if ($query->have_posts()) {
             ob_start();
