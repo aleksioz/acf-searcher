@@ -32,7 +32,7 @@
 }
 
 #acf-search-form input[type="text"] {
-    order: 2;
+    order: 3;
     flex-basis: 50%;
 }
 
@@ -41,17 +41,14 @@
     flex-basis: 30%;
 }
 
-#acf-search-form input[type="number"],
-#acf-search-form select:not([name="rasa"]) {
-    order: 0;
+#acf-search-form input[type="number"] {
+    order: 2;
     flex-basis: 15%;
 }
 
-#acf-search-form input[type="text"]:focus,
-#acf-search-form input[type="number"]:focus,
-#acf-search-form select:focus {
-    border-color: #d09a40;
-    outline: none;
+#acf-search-form select:not([name="rasa"]) {
+    order: 0;
+    flex-basis: 15%;
 }
 
 #acf-search-form button[type="submit"] {
@@ -64,6 +61,13 @@
     cursor: pointer;
     transition: background-color 0.3s;
     flex: 0 0 auto;
+}
+
+#acf-search-form input[type="text"]:focus,
+#acf-search-form input[type="number"]:focus,
+#acf-search-form select:focus {
+    border-color: #d09a40;
+    outline: none;
 }
 
 #acf-search-form button[type="submit"]:hover {
