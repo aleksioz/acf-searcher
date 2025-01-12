@@ -88,66 +88,78 @@ class Init {
             's' => sanitize_text_field($_POST['search']),
             // custom field query args here
             'meta_query' => [
-                'relation' => 'OR',
+                'relation' => 'AND',
                 [
-                    'relation' => 'AND',
+                    'relation' => 'OR',
                     $_POST['rasa'] ? [
                         'key' => 'rasa',
                         'value' => sanitize_text_field($_POST['rasa']),
                         'compare' => '='
                     ] : [],
+                    $_POST['rasa'] ? [
+                        'key' => 'rasa',
+                        'compare' => 'NOT EXISTS'
+                    ] : []
+                ],
+                [
+                    'relation' => 'OR',
                     $_POST['pol'] ? [
                         'key' => 'pol',
                         'value' => sanitize_text_field($_POST['pol']),
                         'compare' => '='
                     ] : [],
+                    $_POST['pol'] ? [
+                        'key' => 'pol',
+                        'compare' => 'NOT EXISTS'
+                    ] : []
+                ],
+                [
+                    'relation' => 'OR',
                     $_POST['velicina'] ? [
                         'key' => 'velicina',
                         'value' => sanitize_text_field($_POST['velicina']),
                         'compare' => '='
                     ] : [],
+                    $_POST['velicina'] ? [
+                        'key' => 'velicina',
+                        'compare' => 'NOT EXISTS'
+                    ] : []
+                ],
+                [
+                    'relation' => 'OR',
                     $_POST['boja'] ? [
                         'key' => 'boja',
                         'value' => sanitize_text_field($_POST['boja']),
                         'compare' => '='
                     ] : [],
+                    $_POST['boja'] ? [
+                        'key' => 'boja',
+                        'compare' => 'NOT EXISTS'
+                    ] : []
+                ],
+                [
+                    'relation' => 'OR',
                     $_POST['cip'] ? [
                         'key' => 'cip',
                         'value' => sanitize_text_field($_POST['cip']),
                         'compare' => '='
                     ] : [],
-                    $_POST['datum'] ? [
-                        'key' => 'datum',
-                        'value' => date('Ymd', strtotime('-' . sanitize_text_field($_POST['datum']) . ' months')),
-                        'compare' => '>'
+                    $_POST['cip'] ? [
+                        'key' => 'cip',
+                        'compare' => 'NOT EXISTS'
                     ] : []
                 ],
                 [
                     'relation' => 'OR',
-                    [
-                        'key' => 'rasa',
-                        'compare' => 'NOT EXISTS'
-                    ],
-                    [
-                        'key' => 'pol',
-                        'compare' => 'NOT EXISTS'
-                    ],
-                    [
-                        'key' => 'velicina',
-                        'compare' => 'NOT EXISTS'
-                    ],
-                    [
-                        'key' => 'boja',
-                        'compare' => 'NOT EXISTS'
-                    ],
-                    [
-                        'key' => 'cip',
-                        'compare' => 'NOT EXISTS'
-                    ],
-                    [
+                    $_POST['datum'] ? [
+                        'key' => 'datum',
+                        'value' => date('Ymd', strtotime('-' . sanitize_text_field($_POST['datum']) . ' months')),
+                        'compare' => '>'
+                    ] : [],
+                    $_POST['datum'] ? [
                         'key' => 'datum',
                         'compare' => 'NOT EXISTS'
-                    ]
+                    ] : []
                 ]
             ]
         ];
