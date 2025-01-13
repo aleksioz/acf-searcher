@@ -1,0 +1,27 @@
+name: Deploy to Server hotmess
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: 5.9.111.115
+		  port: 22934
+          username: alexa@hotmess
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/ip/acf-searcher
+            git reset --hard
+            git pull origin main
+            # Restart services if needed
