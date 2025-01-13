@@ -21,7 +21,7 @@ jobs:
           username: alexa@hotmess
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/ip/acf-searcher
+            cd /var/www/ip/wp-content/plugins/acf-searcher/
             git reset --hard
             git pull origin main
             # Restart services if needed
