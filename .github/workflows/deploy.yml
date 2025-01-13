@@ -17,7 +17,7 @@ jobs:
         uses: appleboy/ssh-action@v0.1.5
         with:
           host: 5.9.111.115
-		  port: 22934
+          port: 22934
           username: alexa@hotmess
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
