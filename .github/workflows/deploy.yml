@@ -18,7 +18,7 @@ jobs:
         with:
           host: 5.9.111.115
           port: 22934
-          username: alexa@hotmess
+          username: alexa
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/ip/wp-content/plugins/acf-searcher/
