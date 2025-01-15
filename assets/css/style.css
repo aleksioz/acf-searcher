@@ -78,7 +78,7 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23d09a40"><path d="M4 6l4 4 4-4z"/></svg>') no-repeat right 10px center;
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%230d97e0"><path d="M4 6l4 4 4-4z"/></svg>') no-repeat right 10px center;
     background-size: 12px;
     background-color: #1b1b1b; /* Theme color for the select dropdown */
     color: #fff; /* Text color */
