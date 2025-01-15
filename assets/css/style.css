@@ -28,7 +28,7 @@
 
 #acf-search-form select:hover,
 #acf-search-form input:hover {
-    border-color: #d09a40;
+    border-color: #0d97e0;
 }
 
 #acf-search-form input[type="text"] {
@@ -54,7 +54,7 @@
 #acf-search-form button[type="submit"] {
     order: 5;
     padding: 10px 20px;
-    background-color: #d09a40;
+    background-color: #0d97e0;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -66,12 +66,12 @@
 #acf-search-form input[type="text"]:focus,
 #acf-search-form input[type="number"]:focus,
 #acf-search-form select:focus {
-    border-color: #d09a40;
+    border-color: #0d97e0;
     outline: none;
 }
 
 #acf-search-form button[type="submit"]:hover {
-    background-color: #b07a30;
+    background-color: #0d97e0;
 }
 
 #acf-search-form select {
@@ -90,7 +90,7 @@
 }
 
 #acf-search-form select option:hover {
-    border-color: #d09a40;
+    border-color: #0d97e0;
     color: #fff; /* Text color */
 }
 
@@ -114,7 +114,7 @@
 }
 
 .select2-container--default .select2-selection--single:hover {
-    border-color: #d09a40;
+    border-color: #0d97e0;
 }
 
 .select2-container--default input.select2-search__field {
@@ -133,7 +133,7 @@
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
-    border-color: #d09a40 transparent transparent transparent;
+    border-color: #0d97e0 transparent transparent transparent;
 }
 
 .select2-container--default .select2-dropdown {
@@ -148,7 +148,7 @@
 
 .select2-container--default .select2-results__option--highlighted,
 .select2-container--default .select2-results__option--highlighted[aria-selected]  {
-    background-color: #d09a40;
+    background-color: #0d97e0;
     color: #fff;
 }
 
@@ -173,7 +173,7 @@
 }
 
 .acf-searcher-item a {
-    color: #d09a40;
+    color: #0d97e0;
     text-decoration: none;
 }
 
