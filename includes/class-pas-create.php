@@ -19,8 +19,8 @@ class PasCreate {
 
     public function connect_data_on_submit( $form_id, $response ) { 
         $entry = forminator_get_latest_entry_by_form_id( $form_id );
-        $post_id = $entry->meta_data['postdata-1']['value']['postdata'];
-        $cat = $entry->meta_data['select-4']['value'];
+        $post_id = sanitize_text_field( $entry->meta_data['postdata-1']['value']['postdata'] );
+        $cat = sanitize_text_field( $entry->meta_data['select-4']['value'] );
         if ( ! $post_id ) {
             $post_id = wp_insert_post(array(
                 'post_title' => $cat,
@@ -36,7 +36,7 @@ class PasCreate {
             $this->make_table( $entry ) 
         );
     
-        $post_content .= $this->make_text( $entry );
+        $post_content .= $this->make_text( $entry, $cat );
     
         $this->update_postmeta_and_thumb( $entry, $post_id );
     
@@ -75,11 +75,11 @@ class PasCreate {
 
     private function make_table($entry) {
         $rows = [
-            'Rasa' => $entry->meta_data['select-1']['value'],
-            'Pol' => $entry->meta_data['radio-1']['value'],
-            'Veličina' => $entry->meta_data['select-2']['value'],
-            'Boja' => $entry->meta_data['select-3']['value'],
-            'Čip' => $entry->meta_data['radio-2']['value'] != 'Ne znam' ? $entry->meta_data['radio-2']['value'] : 0,
+            'Rasa' => sanitize_text_field($entry->meta_data['select-1']['value']),
+            'Pol' => sanitize_text_field($entry->meta_data['radio-1']['value']),
+            'Veličina' => sanitize_text_field($entry->meta_data['select-2']['value']),
+            'Boja' => sanitize_text_field($entry->meta_data['select-3']['value']),
+            'Čip' => sanitize_text_field($entry->meta_data['radio-2']['value']) != 'Ne znam' ? sanitize_text_field( $entry->meta_data['radio-2']['value']) : 0,
             'Broj čipa' => sanitize_text_field($entry->meta_data['number-1']['value']),
             'Datum' => sanitize_text_field($entry->meta_data['date-1']['value']),
             'Lokacija' => sanitize_text_field($entry->meta_data['text-1']['value']),
@@ -95,12 +95,12 @@ class PasCreate {
         return  $table;
     }
 
-    private function make_text( $entry ){
+    private function make_text( $entry, $cat ){
         $content = '';
     
         $rows = [
             'Osobenost' => sanitize_text_field($entry->meta_data['textarea-1']['value']),
-            'Ime vlasnika' => sanitize_text_field($entry->meta_data['name-1']['value']),
+            'Ime vlasnika' => $cat=="Izgubljeni"?sanitize_text_field($entry->meta_data['name-1']['value']):sanitize_text_field($entry->meta_data['name-2']['value']),
             'Telefon' => sanitize_text_field($entry->meta_data['phone-1']['value']),
             'Email' => sanitize_text_field($entry->meta_data['email-1']['value']),
         ];
@@ -113,7 +113,9 @@ class PasCreate {
     
         $content .= '<!-- wp:separator --><hr class="wp-block-separator has-alpha-channel-opacity"/><!-- /wp:separator -->';
     
-        $content .= '<!-- wp:heading {"level":6} --><h6 class="wp-block-heading">vlasnik</h6><!-- /wp:heading -->';
+        $content .= '<!-- wp:heading {"level":6} --><h6 class="wp-block-heading">'; 
+            $cat == "Izgubljeni" ? $content .= 'vlasnik' : $content .= 'pronalazač';
+        $content .= '</h6><!-- /wp:heading -->';
     
         $content .= '<!-- wp:paragraph --><p>' . $rows['Ime vlasnika'] . '<br>' . $rows['Telefon'] . '<br>' . $rows['Email']  . '</p><!-- /wp:paragraph -->';
     
@@ -132,7 +134,6 @@ class PasCreate {
             'Lokacija' => sanitize_text_field($entry->meta_data['text-1']['value']),
             'Email' => sanitize_text_field($entry->meta_data['email-1']['value']),
         ];
-    
     
         foreach ( $paragraphs as $key => $value ) {
                 $slug = strtolower( $key );
