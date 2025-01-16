@@ -13,6 +13,11 @@ class Init {
     }
 
     private function __construct() {
+
+        // Make Pas block available
+        require_once ACF_SEARCHER_PATH . 'includes/class-pas-block.php';
+        PasBlock::instance();
+
         add_shortcode('acf_searcher', [$this, 'render_search_form']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('wp_ajax_nopriv_acf_search', [$this, 'handle_ajax_request']);
