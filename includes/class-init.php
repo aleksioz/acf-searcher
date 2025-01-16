@@ -45,7 +45,7 @@ class Init {
 
                     if($field['type'] === 'select' || $field['type'] === 'radio') {
                             echo '<select name="' . esc_attr($field['name']) . '" class="operator">';
-                            echo '<option value="" disabled selected>' . esc_html($field['label']) . '</option>';
+                            echo '<option value="" selected style="color: gray;">' . esc_html($field['label']) . '</option>';
                             foreach ($field['choices'] as $value => $label) {
                                 echo '<option value="' . esc_attr($value) . '">' . esc_html($label) . '</option>';
                             }
