@@ -53,14 +53,18 @@
 
 #acf-search-form button[type="submit"] {
     order: 5;
-    padding: 10px 20px;
-    background-color: #0d97e0;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    flex: 0 0 auto;
+    color: #0d97e0;
+    background-color: transparent;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-color: #333;
+    border-style: solid;
 }
 
 #acf-search-form input[type="text"]:focus,
@@ -71,7 +75,7 @@
 }
 
 #acf-search-form button[type="submit"]:hover {
-    background-color: #0d97e0;
+    color: #fff;
 }
 
 #acf-search-form select {

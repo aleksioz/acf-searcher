@@ -58,7 +58,7 @@ class Init {
                 echo '<input type="hidden" name="category" value="' . esc_attr($atts['category']) . '">';
             }
             ?>
-            <button type="submit">Search</button>
+            <button type="submit">Potraži..</button>
         </form>
         <div id="acf-search-results"></div>
         <?php
