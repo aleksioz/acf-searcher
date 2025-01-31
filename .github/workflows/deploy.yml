@@ -21,7 +21,7 @@ jobs:
           username: izgublje
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd cd public_html
+            cd pblic_html/wp-content/plugins/acf-searcher
             git reset --hard
             git pull origin main
             # Restart services if needed
