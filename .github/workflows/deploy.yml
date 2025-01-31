@@ -18,7 +18,7 @@ jobs:
         with:
           host: 88.198.1.66
           port: 22222
-          username: alexa
+          username: izgublje
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd cd public_html
