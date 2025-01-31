@@ -16,12 +16,12 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.5
         with:
-          host: 5.9.111.115
-          port: 22934
+          host: 88.198.1.66
+          port: 22222
           username: alexa
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/ip/wp-content/plugins/acf-searcher/
+            cd cd public_html
             git reset --hard
             git pull origin main
             # Restart services if needed
