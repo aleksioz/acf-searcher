@@ -1,4 +1,4 @@
-name: Deploy to Server hotmess
+name: Deploy to Server contrateam
 
 on:
   push:
