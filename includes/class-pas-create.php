@@ -20,7 +20,7 @@ class PasCreate {
     public function connect_data_on_submit( $form_id, $response ) { 
         $entry = forminator_get_latest_entry_by_form_id( $form_id );
         $post_id = sanitize_text_field( $entry->meta_data['postdata-1']['value']['postdata'] );
-        $cat = sanitize_text_field( $entry->meta_data['select-4']['value'] );
+        $cat_id = intval( sanitize_text_field( $entry->meta_data['select-4']['value'] ) );
         if ( ! $post_id ) {
             $post_id = wp_insert_post(array(
                 'post_title' => "Pronadjen " . date('d.m.Y'),
@@ -36,14 +36,14 @@ class PasCreate {
             $this->make_table( $entry ) 
         );
     
-        $post_content .= $this->make_text( $entry, $cat );
+        $post_content .= $this->make_text( $entry, $cat_id );
     
         $this->update_postmeta_and_thumb( $entry, $post_id );
     
         wp_update_post(array(
             'ID'           => $post_id,
             'post_content' => $post_content,
-            'post_category' => array( $cat )
+            'post_category' => array( $cat_id )
         ));
     
     }
@@ -95,12 +95,12 @@ class PasCreate {
         return  $table;
     }
 
-    private function make_text( $entry, $cat ){
+    private function make_text( $entry, $cat_id ){
         $content = '';
     
         $rows = [
             'Osobenost' => sanitize_text_field($entry->meta_data['textarea-1']['value']),
-            'Ime vlasnika' => $cat==1 ? sanitize_text_field($entry->meta_data['name-1']['value']) : sanitize_text_field($entry->meta_data['name-2']['value']),
+            'Ime vlasnika' => $cat_id==1 ? sanitize_text_field($entry->meta_data['name-1']['value']) : sanitize_text_field($entry->meta_data['name-2']['value']),
             'Telefon' => sanitize_text_field($entry->meta_data['phone-1']['value']),
             'Email' => sanitize_text_field($entry->meta_data['email-1']['value']),
         ];
@@ -114,7 +114,7 @@ class PasCreate {
         $content .= '<!-- wp:separator --><hr class="wp-block-separator has-alpha-channel-opacity"/><!-- /wp:separator -->';
     
         $content .= '<!-- wp:heading {"level":6} --><h6 class="wp-block-heading">'; 
-            $cat == 1 ? $content .= 'vlasnik' : $content .= 'pronalazač';
+            $cat_id == 1 ? $content .= 'vlasnik' : $content .= 'pronalazač';
         $content .= '</h6><!-- /wp:heading -->';
     
         $content .= '<!-- wp:paragraph --><p>' . $rows['Ime vlasnika'] . '<br>' . $rows['Telefon'] . '<br>' . $rows['Email']  . '</p><!-- /wp:paragraph -->';
