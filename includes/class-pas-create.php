@@ -23,7 +23,7 @@ class PasCreate {
         $cat = sanitize_text_field( $entry->meta_data['select-4']['value'] );
         if ( ! $post_id ) {
             $post_id = wp_insert_post(array(
-                'post_title' => $cat,
+                'post_title' => "Pronadjen " . date('d.m.Y'),
                 'post_type' => 'post',
                 'post_status' => 'pending',
             ));
@@ -43,7 +43,7 @@ class PasCreate {
         wp_update_post(array(
             'ID'           => $post_id,
             'post_content' => $post_content,
-            'post_category' => array( get_cat_ID( $cat ) )
+            'post_category' => array( $cat )
         ));
     
     }
@@ -100,7 +100,7 @@ class PasCreate {
     
         $rows = [
             'Osobenost' => sanitize_text_field($entry->meta_data['textarea-1']['value']),
-            'Ime vlasnika' => $cat=="Izgubljeni"?sanitize_text_field($entry->meta_data['name-1']['value']):sanitize_text_field($entry->meta_data['name-2']['value']),
+            'Ime vlasnika' => $cat==1 ? sanitize_text_field($entry->meta_data['name-1']['value']) : sanitize_text_field($entry->meta_data['name-2']['value']),
             'Telefon' => sanitize_text_field($entry->meta_data['phone-1']['value']),
             'Email' => sanitize_text_field($entry->meta_data['email-1']['value']),
         ];
@@ -114,7 +114,7 @@ class PasCreate {
         $content .= '<!-- wp:separator --><hr class="wp-block-separator has-alpha-channel-opacity"/><!-- /wp:separator -->';
     
         $content .= '<!-- wp:heading {"level":6} --><h6 class="wp-block-heading">'; 
-            $cat == "Izgubljeni" ? $content .= 'vlasnik' : $content .= 'pronalazač';
+            $cat == 1 ? $content .= 'vlasnik' : $content .= 'pronalazač';
         $content .= '</h6><!-- /wp:heading -->';
     
         $content .= '<!-- wp:paragraph --><p>' . $rows['Ime vlasnika'] . '<br>' . $rows['Telefon'] . '<br>' . $rows['Email']  . '</p><!-- /wp:paragraph -->';
