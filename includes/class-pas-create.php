@@ -20,7 +20,7 @@ class PasCreate {
     public function connect_data_on_submit( $form_id, $response ) { 
         $entry = forminator_get_latest_entry_by_form_id( $form_id );
         $post_id = sanitize_text_field( $entry->meta_data['postdata-1']['value']['postdata'] );
-        $cat_id = intval( sanitize_text_field( $entry->meta_data['select-4']['value'] ) );
+        $cat_id = sanitize_text_field($entry->meta_data['select-4']['value']);
         if ( ! $post_id ) {
             $post_id = wp_insert_post(array(
                 'post_title' => "Pronadjen " . date('d.m.Y'),
