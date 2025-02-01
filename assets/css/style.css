@@ -163,6 +163,13 @@
     margin: 20px 0;
 }
 
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .acf-searcher-results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .acf-searcher-item {
     background: #0e0d06;
     border-radius: 8px;
