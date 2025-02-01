@@ -36,8 +36,16 @@ class Init {
         }
 
         ?>
+        <div class="acf-searcher-instructions">
+            <h4>Dobrodošli u pretragu oglasa! Molimo vas da koristite sledeće opcije za pretragu:</h4>
+            <ul>
+                <li><strong>Izborni elementi:</strong> Koristite padajuće menije i dugmiće za odabir rase, pola, veličine...</li>
+                <li><strong>Datum:</strong> Unesite broj meseci za pretragu oglasa objavljenih u nazad toliko meseci.</li>
+                <li><strong>Tekstualna pretraga:</strong> Unesite ključne reči koje se tačno pojavljuju u naslovu ili tekstu oglasa. Ovo može biti korisno samo ako znate tačan izraz koji tražite. Inače ostavite ovo polje prazno !!</li>
+            </ul>
+        </div>
         <form id="acf-search-form">
-            <input type="text" name="search" placeholder="Traži u tekstu i naslovu (samo ako znate tačan izraz)">
+            <input type="text" name="search" placeholder="Traži u tekstu i naslovu">
             <?php
             $fields = acf_get_fields('group_677f86d30fbf0');
             if ($fields) {
@@ -52,7 +60,7 @@ class Init {
                             echo '</select>';
                     }
                     if ($field['type'] === 'date_picker') {
-                        echo '<input type="number" name="' . esc_attr($field['name']) . '" placeholder="Period pretrage (meseci u nazad)">';
+                        echo '<input type="number" name="' . esc_attr($field['name']) . '" placeholder="Period pretrage (meseci u nazad)" class="acf-searcher-date">';
                     }
                 }
                 echo '<input type="hidden" name="category" value="' . esc_attr($atts['category']) . '">';
