@@ -24,7 +24,7 @@ class PasCreate {
         
         if ( ! $post_id ) {
             $post_id = wp_insert_post(array(
-                'post_title' => "Pronadjen " . date('d.m.Y'),
+                'post_title' => "Vidjen " . date('d.m.Y'),
                 'post_type' => 'post',
                 'post_status' => 'pending',
             ));
