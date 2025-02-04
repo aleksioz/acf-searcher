@@ -137,7 +137,7 @@ class PasCreate {
         ];
     
         foreach ( $paragraphs as $key => $value ) {
-                $slug = strtolower( $key );
+                $slug = strtolower( iconv('UTF-8', 'ASCII//TRANSLIT', $key) );
                 update_post_meta($post_id, $slug, $value);
         }
     
