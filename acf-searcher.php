@@ -2,8 +2,8 @@
 /**
  * Plugin Name: acf-searcher
  * Description: A search plugin for ACF fields
- * Version: 1.2.3
- * Author: Aleksa
+ * Version: 1.2.4
+ * Author: alexa
  */
 
 // Prevent direct access

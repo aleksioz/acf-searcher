@@ -20,7 +20,7 @@ class PasCreate {
     public function connect_data_on_submit( $form_id, $response ) { 
         $entry = forminator_get_latest_entry_by_form_id( $form_id );
         $post_id = sanitize_text_field( $entry->meta_data['postdata-1']['value']['postdata'] );
-        $cat = sanitize_text_field($entry->meta_data['select-4']['value']); // Izgubljeni / Pronađeni i vidjeni
+        $cat = sanitize_text_field($entry->meta_data['select-4']['value']); // Izgubljeni / Vidjeni <- literaly - not slug
         
         if ( ! $post_id ) {
             $post_id = wp_insert_post(array(
@@ -135,11 +135,14 @@ class PasCreate {
             'Lokacija' => sanitize_text_field($entry->meta_data['text-1']['value']),
             'Email' => sanitize_text_field($entry->meta_data['email-1']['value']),
         ];
-    
+
         foreach ( $paragraphs as $key => $value ) {
                 $slug = strtolower( iconv('UTF-8', 'ASCII//TRANSLIT', $key) );
                 update_post_meta($post_id, $slug, $value);
         }
+
+        // We want to store entry_id in postmeta for connection which entry is connected to which post
+        update_post_meta($post_id, 'entry_id', $entry->entry_id);
     
         $img_urls = $entry->meta_data['upload-1']['value']['file']['file_url'];
         if ( ! empty( $img_urls ) ) {
