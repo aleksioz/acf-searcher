@@ -56,7 +56,20 @@ class PasCreate {
     }
 
     private function make_images( $entry ) {
-        $img_urls = $entry->meta_data['upload-1']['value']['file']['file_url'];
+        // $img_urls = $entry->meta_data['upload-1']['value']['file']['file_url'];  OLD
+
+        global $wpdb;
+        $entry_id = $entry->entry_id;
+        $meta_key = 'upload-1';
+
+        $query = $wpdb->prepare(
+            "SELECT meta_value FROM wp_frmt_form_entry_meta WHERE entry_id = %d AND meta_key = %s",
+            $entry_id,
+            $meta_key
+        );
+        $meta_value = $wpdb->get_var($query);
+        $img_urls = unserialize($meta_value);
+        $img_urls = $img_urls['file']['file_url'];
     
         $images_block = '';
         if ( ! empty( $img_urls ) ) {
