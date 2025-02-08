@@ -1,22 +1,41 @@
-=== My WordPress Plugin ===
-Contributors: yourname
-Tags: example, plugin
-Requires at least: 5.0
+=== ACF Searcher Plugin ===
+Contributors: alexa
+Tags: search, ACF, custom fields, WordPress
+Requires at least: 4.0
 Tested up to: 6.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-This is a starter plugin for WordPress. It serves as a basic template to help you get started with your own plugin development.
+The ACF Searcher plugin enhances the search functionality of your WordPress site by including custom fields created with Advanced Custom Fields (ACF) in the search results.
 
 == Installation ==
-1. Upload the plugin files to the `/wp-content/plugins/my-wordpress-plugin` directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
+1. Download the plugin files.
+2. Upload the `acf-searcher` directory to the `/wp-content/plugins/` directory.
+3. Activate the plugin through the 'Plugins' menu in WordPress.
 
-== Usage ==
-Once activated, the plugin will be ready to use. You can customize it by modifying the code in the `src` directory.
+== Frequently Asked Questions ==
+
+= Does this plugin require Advanced Custom Fields (ACF)? =
+Yes, this plugin requires the ACF plugin to be installed and activated.
+
+= How do I know if the plugin is working? =
+Perform a search on your WordPress site. If the search results include content from your ACF fields, the plugin is working correctly.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixed bug with search queries not including ACF fields
+* Improved performance of search functionality
+
 = 1.0.0 =
-* Initial release of the plugin.
+* Initial release
+* Included ACF fields in WordPress search results
+* Added automatic integration with ACF plugin
+
+== License ==
+This plugin is licensed under the GPLv2 or later.
+
+== Credits ==
+Developed by alexa
