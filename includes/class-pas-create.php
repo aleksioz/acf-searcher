@@ -30,6 +30,8 @@ class PasCreate {
                 'post_status' => 'pending',
             ));
         }
+
+        error_log( print_r( $entry, true ), 3, ACF_SEARCHER_PATH . '/log.txt' );
         
         $post_content = get_post_field('post_content', $post_id);
     
