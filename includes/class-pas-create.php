@@ -23,8 +23,8 @@ class PasCreate {
         $cat = sanitize_text_field($entry->meta_data['select-4']['value']); // Izgubljeni / Vidjeni <- literaly - not slug
         
 
-        error_log( print_r( [ 'entry' => $entry, 'post_id' => $post_id], true ), 3, ACF_SEARCHER_PATH . 'log.txt' );
-        die;
+        // error_log( print_r( [ 'entry' => $entry, 'post_id' => $post_id], true ), 3, ACF_SEARCHER_PATH . 'log.txt' );
+        // die;
 
         if ( ! $post_id ) {
             $post_id = wp_insert_post(array(
