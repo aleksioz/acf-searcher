@@ -13,8 +13,8 @@ class PasCreate {
     }
 
     private function __construct() {
-        add_action ( 'forminator_form_after_handle_submit', [$this, 'connect_data_on_submit'], 10, 2 );
-        add_action( 'forminator_form_after_save_entry', [$this, 'connect_data_on_submit'], 10, 2 ); 
+        // add_action ( 'forminator_form_after_handle_submit', [$this, 'connect_data_on_submit'], 10, 2 );
+        add_action( 'forminator_form_after_save_entry', [$this, 'connect_data_on_submit'], 20, 2 ); 
     }
 
     public function connect_data_on_submit( $form_id, $response ) { 
@@ -22,6 +22,10 @@ class PasCreate {
         $post_id = sanitize_text_field( $entry->meta_data['postdata-1']['value']['postdata'] );
         $cat = sanitize_text_field($entry->meta_data['select-4']['value']); // Izgubljeni / Vidjeni <- literaly - not slug
         
+
+        error_log( print_r( [ 'entry' => $entry, 'post_id' => $post_id], true ), 3, ACF_SEARCHER_PATH . 'log.txt' );
+        die;
+
         if ( ! $post_id ) {
             $post_id = wp_insert_post(array(
                 'post_title' => "Vidjen " . date('d.m.Y'),
@@ -56,20 +60,20 @@ class PasCreate {
     }
 
     private function make_images( $entry ) {
-        // $img_urls = $entry->meta_data['upload-1']['value']['file']['file_url'];  OLD
+        $img_urls = $entry->meta_data['upload-1']['value']['file']['file_url'];  //OLD
 
-        global $wpdb;
-        $entry_id = $entry->entry_id;
-        $meta_key = 'upload-1';
+        // global $wpdb;
+        // $entry_id = $entry->entry_id;
+        // $meta_key = 'upload-1';
 
-        $query = $wpdb->prepare(
-            "SELECT meta_value FROM wp_frmt_form_entry_meta WHERE entry_id = %d AND meta_key = %s",
-            $entry_id,
-            $meta_key
-        );
-        $meta_value = $wpdb->get_var($query);
-        $img_urls = unserialize($meta_value);
-        $img_urls = $img_urls['file']['file_url'];
+        // $query = $wpdb->prepare(
+        //     "SELECT meta_value FROM wp_frmt_form_entry_meta WHERE entry_id = %d AND meta_key = %s",
+        //     $entry_id,
+        //     $meta_key
+        // );
+        // $meta_value = $wpdb->get_var($query);
+        // $img_urls = unserialize($meta_value);
+        // $img_urls = $img_urls['file']['file_url'];
     
         $images_block = '';
         if ( ! empty( $img_urls ) ) {
