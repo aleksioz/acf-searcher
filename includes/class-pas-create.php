@@ -90,8 +90,6 @@ class PasCreate {
             $this->featured_image = $attachId;
         }
 
-        error_log( print_r( ['ATTACH ID' => $attachId], true ), 3, ACF_SEARCHER_PATH . '/log.txt' );
-        
         return $attachId;
     }
 
