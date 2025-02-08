@@ -204,7 +204,7 @@ class PasCreate {
 
             $meta = wp_get_attachment_metadata( $post_id );
 
-            $original_file       = basename( $meta['file'] );
+            $original_file       = basename( $meta['original_image'] );
             $cropped_image_files = wp_list_pluck( $meta['sizes'], 'file' );
 
             if ( $original_file === $file || in_array( $file, $cropped_image_files ) ) {
