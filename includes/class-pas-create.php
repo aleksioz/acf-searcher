@@ -2,6 +2,8 @@
 
 class PasCreate {
 
+    private $featured_image = null;
+
 	public static $instance = null;
 
     public static function instance() {
@@ -13,7 +15,6 @@ class PasCreate {
     }
 
     private function __construct() {
-        // add_action ( 'forminator_form_after_handle_submit', [$this, 'connect_data_on_submit'], 10, 2 );
         add_action( 'forminator_form_after_save_entry', [$this, 'connect_data_on_submit'], 20, 2 ); 
     }
 
@@ -22,10 +23,6 @@ class PasCreate {
         $post_id = sanitize_text_field( $entry->meta_data['postdata-1']['value']['postdata'] );
         $cat = sanitize_text_field($entry->meta_data['select-4']['value']); // Izgubljeni / Vidjeni <- literaly - not slug
         
-
-        // error_log( print_r( [ 'entry' => $entry, 'post_id' => $post_id], true ), 3, ACF_SEARCHER_PATH . 'log.txt' );
-        // die;
-
         if ( ! $post_id ) {
             $post_id = wp_insert_post(array(
                 'post_title' => "Vidjen " . date('d.m.Y'),
@@ -61,24 +58,11 @@ class PasCreate {
 
     private function make_images( $entry ) {
         $img_urls = $entry->meta_data['upload-1']['value']['file']['file_url'];  //OLD
-
-        // global $wpdb;
-        // $entry_id = $entry->entry_id;
-        // $meta_key = 'upload-1';
-
-        // $query = $wpdb->prepare(
-        //     "SELECT meta_value FROM wp_frmt_form_entry_meta WHERE entry_id = %d AND meta_key = %s",
-        //     $entry_id,
-        //     $meta_key
-        // );
-        // $meta_value = $wpdb->get_var($query);
-        // $img_urls = unserialize($meta_value);
-        // $img_urls = $img_urls['file']['file_url'];
     
         $images_block = '';
         if ( ! empty( $img_urls ) ) {
             foreach ($img_urls as $img_url) {
-                $attachId = attachment_url_to_postid( $img_url );
+                $attachId = $this->ensure_make_attachments( $img_url );
                 if ( $attachId ) {
                     $images_block .= '<!-- wp:image {"id":' . $attachId . ',"sizeSlug":"full","linkDestination":"media","className":"wp-block-gallery has-nested-images columns-default is-cropped"} --><figure class="wp-block-image size-full wp-block-gallery has-nested-images columns-default is-cropped"><a href="' . $img_url . '"><img src="' . $img_url . '" alt="" class="wp-image-' . $attachId . '"/></a></figure><!-- /wp:image -->';
                 }
@@ -89,6 +73,22 @@ class PasCreate {
         return <<<GALLERY
         <!-- wp:gallery {"linkTo":"file","sizeSlug":"full","className":"","style":{"border":{"radius":"0px"},"spacing":{"blockGap":{"left":"0"}}},"masonryGutter":0,"block_id":$gallery_id} --><figure class="wp-block-gallery has-nested-images columns-default is-cropped" style="border-radius:0px">$images_block</figure><!-- /wp:gallery -->
         GALLERY;
+    }
+
+    private function ensure_make_attachments( $img_url, $retries = 3 ) {
+        $attachId = attachment_url_to_postid( $img_url );
+        
+        while (!$attachId && $retries < 3) {
+            sleep(1);
+            $attachId = attachment_url_to_postid( $img_url );
+            $retries++;
+        }
+
+        if ( empty( $this->featured_image ) ) {
+            $this->featured_image = $attachId;
+        }
+        
+        return $attachId;
     }
 
     private function make_table($entry) {
@@ -162,11 +162,8 @@ class PasCreate {
         update_post_meta($post_id, 'entry_id', $entry->entry_id);
     
         $img_urls = $entry->meta_data['upload-1']['value']['file']['file_url'];
-        if ( ! empty( $img_urls ) ) {
-            $attachId = attachment_url_to_postid( $img_urls[0] );
-            if ( $attachId ) {
-                set_post_thumbnail( $post_id, $attachId );
-            }
+        if ( ! empty( $this->featured_image ) ) {
+            set_post_thumbnail( $post_id, $this->featured_image );
         }
     }
 
