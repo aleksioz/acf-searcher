@@ -77,8 +77,7 @@ class PasCreate {
 
     private function ensure_make_attachments( $img_url, $retries = 3 ) {
 
-        sleep(1);
-        $attachId = $this->get_attachment_id($img_url);
+        $attachId = attachment_url_to_postid($img_url); // try to find attachment by url
         
         while (!$attachId && $retries < 3) {
             sleep(1);
