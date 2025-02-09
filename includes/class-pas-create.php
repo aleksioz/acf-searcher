@@ -80,9 +80,9 @@ class PasCreate {
         sleep(1);
         $attachId = attachment_url_to_postid($img_url); // try to find attachment by url
 
-        error_log( 'ATTACH: ' . $attachId, 3, ACF_SEARCHER_PATH . '/log.txt' );
+        error_log( 'empty ATTACH: ' . empty($attachId), 3, ACF_SEARCHER_PATH . '/log.txt' );
         
-        while (empty($attachId) && $retries < 3) {
+        while (empty($attachId) && ($retries < 3) ) {
             sleep(1);
             $attachId = $this->get_attachment_id( $img_url );
             error_log( 'ATTACH_M: ' . $attachId, 3, ACF_SEARCHER_PATH . '/log.txt' );
