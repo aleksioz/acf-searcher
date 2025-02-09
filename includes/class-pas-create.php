@@ -79,7 +79,7 @@ class PasCreate {
 
         $attachId = attachment_url_to_postid($img_url); // try to find attachment by url
         
-        while (!$attachId && $retries < 3) {
+        while (empty($attachId) && $retries < 3) {
             sleep(1);
             $attachId = $this->get_attachment_id( $img_url );
             $retries++;
