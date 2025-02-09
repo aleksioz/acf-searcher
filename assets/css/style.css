@@ -191,6 +191,12 @@
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+@media (max-width: 768px) {
+    .acf-searcher-item {
+        height: 100%;
+    }
+}
+
 .acf-searcher-item:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
