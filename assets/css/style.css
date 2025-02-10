@@ -185,7 +185,7 @@
 .acf-searcher-item {
     background: #0e0d06;
     border-radius: 8px;
-    padding: 20px;
+    padding: 2vw;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #fff;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -212,7 +212,7 @@
 
 .acf-searcher-item .post-thumbnail img {
     width: 100%;
-    height: 280px; /* Set a fixed height */
+    height: 300px; /* Set a fixed height */
     object-fit: cover; /* Crop the image to fit the container */
     border-radius: 4px;
 }
