@@ -22,10 +22,6 @@ class Init {
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('wp_ajax_nopriv_acf_search', [$this, 'handle_ajax_request']);
         add_action('wp_ajax_acf_search', [$this, 'handle_ajax_request']);
-
-        add_filter('excerpt_length', function ($length) {
-            return 550; // Change this value to the number of words you want
-        }, 99);
     }
 
     public static function render_search_form($atts) {
