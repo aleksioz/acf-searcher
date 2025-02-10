@@ -191,11 +191,11 @@
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .acf-searcher-item {
         height: 100%;
     }
-}
+} */
 
 .acf-searcher-item:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -212,7 +212,8 @@
 
 .acf-searcher-item .post-thumbnail img {
     width: 100%;
-    height: auto;
+    height: 300px; /* Set a fixed height */
+    object-fit: cover; /* Crop the image to fit the container */
     border-radius: 4px;
 }
 
