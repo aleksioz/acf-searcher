@@ -88,10 +88,13 @@ class Init {
 
     public function handle_ajax_request() {
 
+        $paged = isset($_POST['page']) ? sanitize_text_field($_POST['page']) : 1;
+
         $args = [
             'post_type' => 'post',
             'post_status' => 'publish',
-            'posts_per_page' => -1,
+            'posts_per_page' => 3,
+            'paged' => $paged,
             'tax_query' => [
                 [
                     'taxonomy' => 'category',
