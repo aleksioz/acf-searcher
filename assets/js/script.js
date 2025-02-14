@@ -1,9 +1,11 @@
+jQuery(document).on("click", "#acf-load-more", function (e) {
+    e.preventDefault();
+    const page = jQuery(e.target).attr('acf_page');
+    sendAjaxRequest(page);    
+});
+
 jQuery(document).ready(function($) {
     $('#acf-search-form').on('submit', function(e) {
-        e.preventDefault();
-        sendAjaxRequest(1);    
-    });
-    $('#acf-load-more').on('submit', function(e) {
         e.preventDefault();
         sendAjaxRequest(1);    
     });
@@ -11,7 +13,7 @@ jQuery(document).ready(function($) {
 
 function sendAjaxRequest(page) {
     // Show loader
-    jQuery('#acf-search-results').html('<div class="loader">Pretraga u toku...</div>');
+    jQuery('#acf-search-results').append('<div class="loader">Pretraga u toku...</div>');
     
     jQuery.ajax({
         url: acf_searcher.ajax_url,
@@ -29,13 +31,17 @@ function sendAjaxRequest(page) {
             page: page,
         },
         success: function(response) {
+            // Remove loader & button
+            jQuery('.loader, #acf-load-more').remove();
+
             if (page <= 1) {
-                jQuery('#acf-search-results').html(response);
+                jQuery('#acf-search-results').html(response)
                 // Hide the main content
                 jQuery('main#main').hide();
             } else {
-                jQuery('#acf-search-results').append(response);
+                jQuery('#acf-search-results').append(response); 
             }
+            jQuery('#acf-search-results').append(`<button id="acf-load-more" type="submit" acf_page="${++page}">Učitaj jos...</button>`);
         }
     });
 }
