@@ -63,7 +63,7 @@
     flex-basis: 15%;
 }
 
-#acf-search-form button[type="submit"] {
+#acf-search-form button[type="submit"], #acf-load-more {
     order: 5;
     color: #0d97e0;
     background-color: transparent;
@@ -86,7 +86,8 @@
     outline: none;
 }
 
-#acf-search-form button[type="submit"]:hover {
+#acf-search-form button[type="submit"]:hover, #acf-load-more:hover,
+#acf-search-form button[type="submit"]:active, #acf-load-more:active {
     color: #fff;
 }
 
