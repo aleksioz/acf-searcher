@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This is central and init class for the plugin.
+ * It initializes the plugin and loads all the necessary classes.
+ */
+
 class Init {
 
     public static $instance = null;
@@ -21,10 +26,10 @@ class Init {
 
         PasCreate::instance(); // Initialize the class for creating posts
 
-        add_shortcode('acf_searcher', [ SearchForm::class, 'render']);
-        add_action('wp_ajax_nopriv_acf_search', [AjaxRequest::class, 'handle']);
-        add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
-        add_action('wp_ajax_acf_search', [$this, 'handle_ajax_request']);
+        add_shortcode('acf_searcher', ['SearchForm', 'render']);
+        add_action('wp_ajax_nopriv_acf_search', [ 'AjaxRequest', 'handle']);
+        add_action('wp_ajax_acf_search', [ 'AjaxRequest', 'handle']);
+        add_action('wp_enqueue_scripts', [ $this, 'enqueue_scripts']);
     }
 
     public function enqueue_scripts() {

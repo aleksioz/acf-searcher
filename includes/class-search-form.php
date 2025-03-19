@@ -8,7 +8,8 @@ final class SearchForm {
 	 * @param array $atts Shortcode attributes.
 	 * @return string HTML output of the search form.
 	 */
-    public static function render($atts) {
+    public static function render($atts='') {
+
 		// Merge default attributes
 		$atts = shortcode_atts([
 			'category' => ''
@@ -20,7 +21,6 @@ final class SearchForm {
 	
 		$fields = acf_get_fields('group_677f86d30fbf0'); // Retrieve ACF fields
 	
-		ob_start(); // Start output buffering, just for readability
 		?>
 	
 		<div class="acf-searcher-instructions">
@@ -47,11 +47,13 @@ final class SearchForm {
 		</form>
 	
 		<div id="acf-search-results"></div>
-	
-		<?php
-		return ob_get_clean(); // Return buffered content
+		
+		<?php // just finish the function
 	}
 	
+
+
+
 	/**
 	 * Render the field based on its type
 	 *
@@ -74,5 +76,6 @@ final class SearchForm {
 			<input type="number" name="<?= esc_attr($field['name']) ?>" placeholder="Period pretrage (meseci u nazad)" class="acf-searcher-date">
 		<?php endif;
 	}
+	
 	
 } // End class
