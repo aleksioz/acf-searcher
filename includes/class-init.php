@@ -19,7 +19,7 @@ class Init {
         require_once ACF_SEARCHER_PATH . 'includes/class-search-form.php';
         require_once ACF_SEARCHER_PATH . 'includes/class-ajax-request.php';
 
-        PasCreate::instance();
+        PasCreate::instance(); // Initialize the class for creating posts
 
         add_shortcode('acf_searcher', [ SearchForm::class, 'render']);
         add_action('wp_ajax_nopriv_acf_search', [AjaxRequest::class, 'handle']);
