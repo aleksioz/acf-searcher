@@ -20,15 +20,14 @@ class Init {
     private function __construct() {
 
         // Make classes available
-        require_once ACF_SEARCHER_PATH . 'includes/class-pas-create.php';
         require_once ACF_SEARCHER_PATH . 'includes/class-search-form.php';
         require_once ACF_SEARCHER_PATH . 'includes/class-ajax-request.php';
 
-        PasCreate::instance(); // Initialize the class for creating posts
-
         add_shortcode('acf_searcher', ['SearchForm', 'render']);
+
         add_action('wp_ajax_nopriv_acf_search', [ 'AjaxRequest', 'response']);
         add_action('wp_ajax_acf_search', [ 'AjaxRequest', 'response']);
+
         add_action('wp_enqueue_scripts', [ $this, 'enqueue_scripts']);
     }
 
