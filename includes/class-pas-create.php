@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This is the class for creating posts from Forminator form submissions.
+ * It handles the creation of posts, galleries, tables, and other content.
+ *
+ * @package ACF_Searcher
+ */
+
 class PasCreate {
 
     private $featured_image = null;

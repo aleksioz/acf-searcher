@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * SearchForm class
+ *
+ * Rendering of the search form and its fields.
+ *
+ * @package ACF_Searcher
+ */
+
 final class SearchForm {
 
 	/**

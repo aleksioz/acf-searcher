@@ -27,8 +27,8 @@ class Init {
         PasCreate::instance(); // Initialize the class for creating posts
 
         add_shortcode('acf_searcher', ['SearchForm', 'render']);
-        add_action('wp_ajax_nopriv_acf_search', [ 'AjaxRequest', 'handle']);
-        add_action('wp_ajax_acf_search', [ 'AjaxRequest', 'handle']);
+        add_action('wp_ajax_nopriv_acf_search', [ 'AjaxRequest', 'response']);
+        add_action('wp_ajax_acf_search', [ 'AjaxRequest', 'response']);
         add_action('wp_enqueue_scripts', [ $this, 'enqueue_scripts']);
     }
 

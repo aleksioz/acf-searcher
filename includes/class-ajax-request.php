@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This class makes response to the AJAX request for the search form.
+ * It prepares the query based on the search parameters and returns the results.
+ *
+ * @package ACF_Searcher
+ */
+
 final class AjaxRequest {
 
     /**
@@ -129,7 +136,7 @@ final class AjaxRequest {
      *
      * @return void
      */
-    public static function handle() {
+    public static function response() {
 
         $query = self::prepare_the_query();
 
@@ -143,7 +150,7 @@ final class AjaxRequest {
 
                     $query->the_post();
                     $permalink = get_permalink();
-                    $thumbnail = has_post_thumbnail() ? the_post_thumbnail('medium') : '';
+                    $thumbnail = has_post_thumbnail() ? get_the_post_thumbnail( get_the_ID(), 'medium' ) : '';
                     $title = get_the_title();
                     $excerpt = get_the_excerpt();
 
