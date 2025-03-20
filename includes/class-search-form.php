@@ -20,14 +20,17 @@ final class SearchForm {
 
 		// Merge default attributes
 		$atts = shortcode_atts([
-			'category' => ''
+			'category' => '',
+			'acf-group' => '',
 		], $atts, 'acf_searcher');
 	
-		if (empty($atts['category'])) {
-			return '<p>Kategorija je obavezna!</p>';
+		if ( empty($atts['category']) || empty($atts['acf-group']) ) {
+			return <<<HTML
+			<p>Kategorija(category) i ACF grupa (acf-group) su obavezni u shortcode!</p>';
+			HTML;
 		}
 	
-		$fields = acf_get_fields('group_677f86d30fbf0'); // Retrieve ACF fields
+		$fields = acf_get_fields($atts['acf-group']); // Retrieve ACF fields
 	
 		?>
 	
