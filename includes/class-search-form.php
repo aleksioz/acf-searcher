@@ -23,10 +23,14 @@ final class SearchForm {
 			'category' => '',
 			'acf-group' => '',
 		], $atts, 'acf_searcher');
+
+		// Sanitize inputs
+		$atts['category'] = sanitize_text_field($atts['category']);
+		$atts['acf-group'] = sanitize_text_field($atts['acf-group']);
 	
 		if ( empty($atts['category']) || empty($atts['acf-group']) ) {
 			return <<<HTML
-			<p>Kategorija(category) i ACF grupa (acf-group) su obavezni u shortcode!</p>';
+			<p>Kategorija(category) i ACF grupa (acf-group) su obavezni u shortcode!</p>
 			HTML;
 		}
 	
