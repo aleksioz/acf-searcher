@@ -24,8 +24,6 @@ final class AjaxRequest {
 
         $paged = isset($_POST['page']) ? sanitize_text_field($_POST['page']) : 1;
 
-        error_log('Search POST data: ' . print_r($_POST, true), 3, ACF_SEARCHER_PATH . '/debug.log');
-
         $args = [
             'post_type' => 'post',
             'post_status' => 'publish',
@@ -120,15 +118,10 @@ final class AjaxRequest {
                     ] : []
                 ],
                 [
-                    'relation' => 'OR',
                     $_POST['datum'] ? [
                         'key' => 'datum',
                         'value' => date('Ymd', strtotime('-' . sanitize_text_field($_POST['datum']) . ' months')),
                         'compare' => '>'
-                    ] : [],
-                    $_POST['datum'] ? [
-                        'key' => 'datum',
-                        'compare' => 'EXISTS'
                     ] : []
                 ]
             ]
