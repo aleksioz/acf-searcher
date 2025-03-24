@@ -21,7 +21,7 @@ require_once ACF_SEARCHER_PATH . 'includes/class-init.php';
 // Initialize the plugin
 add_action( 'plugins_loaded', function() { 
     if ( class_exists( 'ACF' ) ) {
-        Init::instance();
+        ACF_Searcher\Init::instance();
     }
 }, 20 );
 

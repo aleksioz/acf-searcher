@@ -5,6 +5,12 @@
  * It initializes the plugin and loads all the necessary classes.
  */
 
+namespace ACF_Searcher;
+
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
+}
+
 class Init {
 
     public static $instance = null;

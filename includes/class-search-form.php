@@ -8,6 +8,12 @@
  * @package ACF_Searcher
  */
 
+ namespace ACF_Searcher;
+
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly
+}
+
 final class SearchForm {
 
 	/**
