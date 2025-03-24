@@ -46,18 +46,6 @@ final class AjaxRequest {
             'meta_query' => [
                 'relation' => 'AND', // narrow the search
                 [
-                    'relation' => 'OR', 
-                    $_POST['search'] ? [
-                        'key' => 'search',
-                        'value' => sanitize_text_field($_POST['search']), 
-                        'compare' => '=' // match the value first!
-                    ] : [],
-                    $_POST['search'] ? [
-                        'key' => 'search',
-                        'compare' => 'EXISTS' // match any selected value (just key exist)
-                    ] : []
-                ],
-                [
                     'relation' => 'OR',
                     $_POST['rasa'] ? [
                         'key' => 'rasa',
@@ -66,21 +54,22 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['rasa'] ? [
                         'key' => 'rasa',
-                        'compare' => 'EXISTS'
+                        'value' => '',
+                        'compare' => '='
                     ] : []
                 ],
                 [
                     'relation' => 'OR',
-                    [
+                    $_POST['pol'] ? [
                         'key' => 'pol',
                         'value' => sanitize_text_field($_POST['pol']),
                         'compare' => '='
-                    ],
-                    [
+                    ] : [],
+                    $_POST['pol'] ? [
                         'key' => 'pol',
                         'value' => '',
                         'compare' => '='
-                    ]
+                    ] : []
                 ],
                 [
                     'relation' => 'OR',
@@ -91,7 +80,8 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['velicina'] ? [
                         'key' => 'velicina',
-                        'compare' => 'EXISTS'
+                        'value' => '',
+                        'compare' => '='
                     ] : []
                 ],
                 [
@@ -103,7 +93,8 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['boja'] ? [
                         'key' => 'boja',
-                        'compare' => 'EXISTS'
+                        'value' => '',
+                        'compare' => '='
                     ] : []
                 ],
                 [
@@ -115,7 +106,8 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['cip'] ? [
                         'key' => 'cip',
-                        'compare' => 'EXISTS'
+                        'value' => '',
+                        'compare' => '='
                     ] : []
                 ],
                 [
