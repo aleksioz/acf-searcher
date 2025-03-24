@@ -29,10 +29,10 @@ class Init {
         require_once ACF_SEARCHER_PATH . 'includes/class-search-form.php';
         require_once ACF_SEARCHER_PATH . 'includes/class-ajax-request.php';
 
-        add_shortcode('acf_searcher', ['SearchForm', 'render']);
+        add_shortcode('acf_searcher', ['ACF_Searcher\SearchForm', 'render']);
 
-        add_action('wp_ajax_nopriv_acf_search', [ 'AjaxRequest', 'response']);
-        add_action('wp_ajax_acf_search', [ 'AjaxRequest', 'response']);
+        add_action('wp_ajax_nopriv_acf_search', [ 'ACF_Searcher\AjaxRequest', 'response']);
+        add_action('wp_ajax_acf_search', [ 'ACF_Searcher\AjaxRequest', 'response']);
 
         add_action('wp_enqueue_scripts', [ $this, 'enqueue_scripts']);
     }

@@ -132,7 +132,7 @@ final class AjaxRequest {
             ]
         ];
 
-        return new WP_Query($args);
+        return new \WP_Query($args);
     }
 
 

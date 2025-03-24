@@ -2,7 +2,7 @@
 /**
  * Plugin Name: acf-searcher
  * Description: A search plugin for ACF fields
- * Version: 1.2.6
+ * Version: 1.2.7
  * Author: alexa
  */
 
@@ -17,11 +17,12 @@ define( 'ACF_SEARCHER_URL', plugin_dir_url( __FILE__ ) );
 
 // Include the main plugin class
 require_once ACF_SEARCHER_PATH . 'includes/class-init.php';
+use ACF_Searcher\Init;
 
 // Initialize the plugin
 add_action( 'plugins_loaded', function() { 
     if ( class_exists( 'ACF' ) ) {
-        ACF_Searcher\Init::instance();
+        Init::instance();
     }
 }, 20 );
 
