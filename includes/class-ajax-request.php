@@ -71,15 +71,16 @@ final class AjaxRequest {
                 ],
                 [
                     'relation' => 'OR',
-                    $_POST['pol'] ? [
+                    [
                         'key' => 'pol',
                         'value' => sanitize_text_field($_POST['pol']),
                         'compare' => '='
-                    ] : [],
-                    $_POST['pol'] ? [
+                    ],
+                    [
                         'key' => 'pol',
-                        'compare' => 'EXISTS'
-                    ] : []
+                        'value' => '',
+                        'compare' => '='
+                    ]
                 ],
                 [
                     'relation' => 'OR',
