@@ -24,6 +24,8 @@ final class AjaxRequest {
 
         $paged = isset($_POST['page']) ? sanitize_text_field($_POST['page']) : 1;
 
+        error_log('Search POST data: ' . print_r($_POST, true), 3, ACF_SEARCHER_PATH . '/debug.log');
+
         $args = [
             'post_type' => 'post',
             'post_status' => 'publish',
@@ -50,11 +52,11 @@ final class AjaxRequest {
                     $_POST['search'] ? [
                         'key' => 'search',
                         'value' => sanitize_text_field($_POST['search']), 
-                        'compare' => '=' // match the value
+                        'compare' => '=' // match the value first!
                     ] : [],
                     $_POST['search'] ? [
                         'key' => 'search',
-                        'compare' => 'NOT EXISTS' // match any selected value (if this field do not exist)
+                        'compare' => 'EXISTS' // match any selected value (just key exist)
                     ] : []
                 ],
                 [
@@ -66,7 +68,7 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['rasa'] ? [
                         'key' => 'rasa',
-                        'compare' => 'NOT EXISTS'
+                        'compare' => 'EXISTS'
                     ] : []
                 ],
                 [
@@ -78,7 +80,7 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['pol'] ? [
                         'key' => 'pol',
-                        'compare' => 'NOT EXISTS'
+                        'compare' => 'EXISTS'
                     ] : []
                 ],
                 [
@@ -90,7 +92,7 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['velicina'] ? [
                         'key' => 'velicina',
-                        'compare' => 'NOT EXISTS'
+                        'compare' => 'EXISTS'
                     ] : []
                 ],
                 [
@@ -102,7 +104,7 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['boja'] ? [
                         'key' => 'boja',
-                        'compare' => 'NOT EXISTS'
+                        'compare' => 'EXISTS'
                     ] : []
                 ],
                 [
@@ -114,7 +116,7 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['cip'] ? [
                         'key' => 'cip',
-                        'compare' => 'NOT EXISTS'
+                        'compare' => 'EXISTS'
                     ] : []
                 ],
                 [
@@ -126,7 +128,7 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['datum'] ? [
                         'key' => 'datum',
-                        'compare' => 'NOT EXISTS'
+                        'compare' => 'EXISTS'
                     ] : []
                 ]
             ]
