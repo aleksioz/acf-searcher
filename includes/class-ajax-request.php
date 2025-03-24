@@ -50,11 +50,11 @@ final class AjaxRequest {
                     $_POST['search'] ? [
                         'key' => 'search',
                         'value' => sanitize_text_field($_POST['search']), 
-                        'compare' => '=' // match the value
+                        'compare' => '=' // match the value first!
                     ] : [],
                     $_POST['search'] ? [
                         'key' => 'search',
-                        'compare' => 'NOT EXISTS' // match any selected value (if this field do not exist)
+                        'compare' => 'EXISTS' // match any selected value (just key exist)
                     ] : []
                 ],
                 [
@@ -66,7 +66,7 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['rasa'] ? [
                         'key' => 'rasa',
-                        'compare' => 'NOT EXISTS'
+                        'compare' => 'EXISTS'
                     ] : []
                 ],
                 [
@@ -78,7 +78,7 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['pol'] ? [
                         'key' => 'pol',
-                        'compare' => 'NOT EXISTS'
+                        'compare' => 'EXISTS'
                     ] : []
                 ],
                 [
@@ -90,7 +90,7 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['velicina'] ? [
                         'key' => 'velicina',
-                        'compare' => 'NOT EXISTS'
+                        'compare' => 'EXISTS'
                     ] : []
                 ],
                 [
@@ -102,7 +102,7 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['boja'] ? [
                         'key' => 'boja',
-                        'compare' => 'NOT EXISTS'
+                        'compare' => 'EXISTS'
                     ] : []
                 ],
                 [
@@ -114,19 +114,14 @@ final class AjaxRequest {
                     ] : [],
                     $_POST['cip'] ? [
                         'key' => 'cip',
-                        'compare' => 'NOT EXISTS'
+                        'compare' => 'EXISTS'
                     ] : []
                 ],
                 [
-                    'relation' => 'OR',
                     $_POST['datum'] ? [
                         'key' => 'datum',
                         'value' => date('Ymd', strtotime('-' . sanitize_text_field($_POST['datum']) . ' months')),
                         'compare' => '>'
-                    ] : [],
-                    $_POST['datum'] ? [
-                        'key' => 'datum',
-                        'compare' => 'NOT EXISTS'
                     ] : []
                 ]
             ]
