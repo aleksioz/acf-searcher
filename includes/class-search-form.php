@@ -48,7 +48,7 @@ final class SearchForm {
 			<h4>Dobrodošli u pretragu oglasa! Molimo vas da koristite sledeće opcije za pretragu:</h4>
 			<ul>
 				<li><strong>Izborni elementi:</strong> Koristite padajuće menije i dugmiće za odabir rase, pola, veličine...</li>
-				<li><strong>Datum:</strong> Unesite broj meseci za pretragu oglasa objavljenih u nazad toliko meseci.</li>
+				<li><strong>Datum:</strong> Unesite pre koliko meseci je otprilike pas izgubljen.</li>
 				<li><strong>Tekstualna pretraga:</strong> Unesite ključne reči koje se tačno pojavljuju u naslovu ili tekstu oglasa. Ovo može biti korisno samo ako znate tačan izraz koji tražite. Inače ostavite ovo polje prazno</li>
 				<li><strong>Napomena:</strong> <i>Svako selektovano polje dodatno sužava pretragu, dok ostavljanje polja praznim proširuje pretragu.</i></li>
 			</ul>
@@ -94,7 +94,7 @@ final class SearchForm {
 				<?php endforeach; ?>
 			</select>
 		<?php elseif ($field['type'] === 'date_picker'): ?>
-			<input type="number" name="<?= esc_attr($field['name']) ?>" placeholder="Period pretrage (meseci u nazad)" class="acf-searcher-date">
+			<input type="number" name="<?= esc_attr($field['name']) ?>" placeholder="Pre koliko meseci je izgubljen?" class="acf-searcher-date">
 		<?php endif;
 	}
 	
