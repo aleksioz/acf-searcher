@@ -44,16 +44,6 @@ final class SearchForm {
 	
 		?>
 	
-		<div class="acf-searcher-instructions">
-			<h4>Dobrodošli u pretragu oglasa! Molimo vas da koristite sledeće opcije za pretragu:</h4>
-			<ul>
-				<li><strong>Izborni elementi:</strong> Koristite padajuće menije i dugmiće za odabir rase, pola, veličine...</li>
-				<li><strong>Datum:</strong> Unesite pre koliko meseci je otprilike pas izgubljen.</li>
-				<li><strong>Tekstualna pretraga:</strong> Unesite ključne reči koje se tačno pojavljuju u naslovu ili tekstu oglasa. Ovo može biti korisno samo ako znate tačan izraz koji tražite. Inače ostavite ovo polje prazno</li>
-				<li><strong>Napomena:</strong> <i>Svako selektovano polje dodatno sužava pretragu, dok ostavljanje polja praznim proširuje pretragu.</i></li>
-			</ul>
-		</div>
-	
 		<form id="acf-search-form">    
 			<input type="text" name="search" placeholder="Traži u tekstu i naslovu">
 	
