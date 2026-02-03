@@ -227,3 +227,11 @@
     font-size: 1em;
     color: #ccc;
 }
+
+#acf-search-results article div {
+    border-radius: 12px;
+}
+
+#acf-search-results article div div table tr td {
+    padding: 0;
+}
