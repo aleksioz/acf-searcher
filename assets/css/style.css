@@ -228,10 +228,10 @@
     color: #ccc;
 }
 
-#acf-search-results article div {
+article div {
     border-radius: 12px;
 }
 
-#acf-search-results article div div table tr td {
+article div div table tr td {
     padding: 0;
 }
